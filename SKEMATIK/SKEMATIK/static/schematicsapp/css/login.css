@@ -115,8 +115,6 @@ page-wrapper {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    -webkit-filter: brightness(0.5);
-    filter: brightness(0.5;
 }
 .item:nth-child(2) {
     background: url('/static/schematicsapp/images/background2.jpg') no-repeat center center fixed;
@@ -124,8 +122,6 @@ page-wrapper {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    -webkit-filter: brightness(0.5);
-    filter: brightness(0.5;
 }
 .item:nth-child(3) {
     background: url('/static/schematicsapp/images/background3.jpg') no-repeat center center fixed;
@@ -133,8 +129,6 @@ page-wrapper {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    -webkit-filter: brightness(0.5);
-    filter: brightness(0.5;
 }
 .carousel {
     z-index: -99;

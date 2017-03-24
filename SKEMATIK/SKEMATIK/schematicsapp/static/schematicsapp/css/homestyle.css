@@ -75,12 +75,3 @@ margin-top:10px;
 {
     margin: 0 0 11px;
 }
-
-.schematic-image{
-    max-width:100%;
-    max-height:100%;
-}
-
-#description-text p{
- word-wrap:break-word;
-}

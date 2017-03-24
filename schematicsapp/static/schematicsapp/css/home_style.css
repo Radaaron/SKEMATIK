@@ -1,0 +1,333 @@
+.top-buffer-50 {
+margin-top:50px;
+}
+
+.top-buffer-30 {
+margin-top:30px;
+}
+
+.top-buffer-20 {
+margin-top:20px;
+}
+
+.top-buffer-100 {
+margin-top:100px;
+}
+
+.top-buffer-10 {
+margin-top:10px;
+}
+
+.glyphicon {
+    margin-right:5px;
+}
+
+.fileUpload {
+	position: relative;
+	overflow: hidden;
+	margin: 10px;
+}
+
+.fileUpload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+#add-button{
+    background-color: #551a8b;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-family: Century Gothic;
+}
+
+#add-button:hover{
+    background:#800080;
+}
+
+#schematic-submit-btn{
+    background-color: #551a8b;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-family: Century Gothic;
+}
+
+#schematic-submit-btn:hover{
+    background:#800080;
+}
+
+#choose-button{
+    background-color: #551a8b;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-family: Century Gothic;
+}
+
+#choose-button:hover{
+    background:#800080;
+}
+
+#view-button{
+    background-color: #551a8b;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-family: Century Gothic;
+}
+
+#view-button:hover{
+    background:#800080;
+}
+
+#edit-button{
+    background-color: #551a8b;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-family: Century Gothic;
+}
+
+#edit-button:hover{
+    background:#800080;
+}
+
+#download-button{
+    background-color: #551a8b;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-family: Century Gothic;
+}
+
+#download-button:hover{
+    background:#800080;
+}
+
+
+.close-button{
+    background-color: #551a8b;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-family: Century Gothic;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
+
+.thumbnail
+{
+    margin-bottom: 20px;
+    padding: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    border-color: #551a8b;
+}
+
+.item.list-group-item
+{
+    float: none;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 10px;
+    border-color: #551a8b;
+}
+
+.panel-body{
+border:1px solid #BDA0CB;
+border-radius: 5px;
+}
+
+.schematic-image{
+    width:  300px;
+    height: 300px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+
+label{
+    font-family:Century Gothic;
+}
+
+.label-custom {
+  background-color: #551a8b;
+  font-family: Century Gothic;
+}
+.label-custom[href]:hover,
+.label-custom[href]:focus {
+  background-color: #800080;
+}
+
+.description-text{
+ word-wrap:break-word;
+}
+
+
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+.modal-title{
+    font-family:Century Gothic;
+}
+
+/* Modal Content (Image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)}
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
+
+.list-group-item-heading{
+    font-family: Century Gothic;
+    font-weight:bold;
+}
+
+.description-text{
+    font-family: Century Gothic;
+
+}
+
+#well-title{
+    font-family: Century Gothic;
+    font-weight: bold;
+    color:white;
+}
+
+#well-custom{
+    background-color:#551a8b;
+    border-radius: 5px;
+}
+
+#modalSchematicImage{
+    width:100%;
+}
+
+#modal-viewimage{
+    background-color:#191919;
+}
+
+#mainpage-title{
+    font-family: Century Gothic;
+    font-size:60pt;
+    font-weight: bold;
+}
+
+#upload-message{
+    font-family: Century Gothic;
+    font-size:15pt;
+
+}
+
+.upload-row{
+    border:1px solid #BDA0CB;
+    border-radius:5px;
+}

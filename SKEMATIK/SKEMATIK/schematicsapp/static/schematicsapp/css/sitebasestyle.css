@@ -2,24 +2,14 @@
     min-width:100%;
 }
 
+
 .navbar-ian {
-  background-color: #2ecc71;
+  background-color: #551a8b;
   border: 1px solid black;
   position:relative;
 }
 
-.navbar-brand
-{
-    padding-top: 0;
-}
 
-.navbar-ian .navbar-brand {
-  color: #ffffff;
-}
-.navbar-ian .navbar-brand:hover,
-.navbar-ian .navbar-brand:focus {
-  color: #040000;
-}
 .navbar-ian .navbar-text {
   color: #ffffff;
 }
@@ -32,15 +22,21 @@
   color: #040000;
 }
 .navbar-ian .navbar-nav > li > .dropdown-menu {
-  background-color: #44b818;
+  background-color: #800080;
 }
+
+.navbar-ian .navbar-nav > li > a:hover, .navbar-ian .navbar-nav > li > a:focus {
+    background-color: #800080;
+    color: #ffffff;
+}
+
 .navbar-ian .navbar-nav > li > .dropdown-menu > li > a {
   color: #ffffff;
 }
 .navbar-ian .navbar-nav > li > .dropdown-menu > li > a:hover,
 .navbar-ian .navbar-nav > li > .dropdown-menu > li > a:focus {
   color: #040000;
-  background-color: #78e765;
+  background-color: #800080;
 }
 
 .navbar-ian .navbar-nav > li > .dropdown-menu > li > .divider {
@@ -49,27 +45,27 @@
 .navbar-ian .navbar-nav .open .dropdown-menu > .active > a,
 .navbar-ian .navbar-nav .open .dropdown-menu > .active > a:hover,
 .navbar-ian .navbar-nav .open .dropdown-menu > .active > a:focus {
-  color: #040000;
-  background-color: #78e765;
+  color: #ffffff;
+  background-color: #800080;
 }
 .navbar-ian .navbar-nav > .active > a,
 .navbar-ian .navbar-nav > .active > a:hover,
 .navbar-ian .navbar-nav > .active > a:focus {
-  color: #040000;
-  background-color: #78e765;
+  color: #ffffff;
+  background-color: #800080;
 }
 .navbar-ian .navbar-nav > .open > a,
 .navbar-ian .navbar-nav > .open > a:hover,
 .navbar-ian .navbar-nav > .open > a:focus {
   color: #040000;
-  background-color: #78e765;
+  background-color: #800080;
 }
 .navbar-ian .navbar-toggle {
   border-color: #78e765;
 }
 .navbar-ian .navbar-toggle:hover,
 .navbar-ian .navbar-toggle:focus {
-  background-color: #78e765;
+  background-color: #800080;
 }
 .navbar-ian .navbar-toggle .icon-bar {
   background-color: #ffffff;
@@ -96,7 +92,7 @@
   .navbar-ian .navbar-nav .open .dropdown-menu > .active > a,
   .navbar-ian .navbar-nav .open .dropdown-menu > .active > a:hover,
   .navbar-ian .navbar-nav .open .dropdown-menu > .active > a:focus {
-    color: #040000;
-    background-color: #78e765;
+    color: #ffffff;
+    background-color: #800080;
   }
 }

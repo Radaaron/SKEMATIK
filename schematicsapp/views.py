@@ -9,8 +9,6 @@ from .models import SchematicModel
 
 
 def upload_schematic(request):
-
-
     if request.method == 'POST':
         form = UploadImageForm(request.POST, request.FILES)
         if form.is_valid():
@@ -30,4 +28,4 @@ def upload_schematic(request):
             return HttpResponseRedirect('/home/')
         print("Invalid Form")
     # default
-    return render(request, 'upload.html', {'user': request.user})
+    return render(request, 'home.html', {'user': request.user})

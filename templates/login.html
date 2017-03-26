@@ -93,61 +93,60 @@
         </div>
 
         <div class="login">
-             <div class="login-content">
-                 <div class="col-lg-12">
-                <div class="well well-login">
-                    <h2 class="well-header">Log-in</h2>
-                    <div class="row login-row">
-                        <div class="col-lg-12">
-                        <form method="POST" action=".?next={{ log_redirect_to }}"> {% csrf_token %}
-                            <div class="row username-field">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span> <label class="label-username">Username</label></span>
-                                            <input class='form-control' type="text" name="username" value="" id="username">
+            <div class="login-content">
+                <div class="col-lg-12">
+                    <div class="well well-login">
+                        <h2 class="well-header">Log-in</h2>
+                        <div class="row login-row">
+                            <div class="col-lg-12">
+                                <form method="POST" action=".?next={{ log_redirect_to }}"> {% csrf_token %}
+                                    <div class="row username-field">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span> <label class="label-username">Username</label></span>
+                                                    <input class='form-control' type="text" name="username" value="" id="username">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row password-field">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"> </span> <label class="label-pass">Password</label></span>
-                                            <input class='form-control' type="password" name="password" value="" id="password">
+                                    <div class="row password-field">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"> </span> <label class="label-pass">Password</label></span>
+                                                    <input class='form-control' type="password" name="password" value="" id="password">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row checkbox-field">
-                                <div class="col-lg-12">
-                                    <div class="checkbox" style="margin-top:0;">
-                                        <label class="login-labels"><input type="checkbox" value="">Stay signed in?</label>
+                                    <div class="row checkbox-field">
+                                        <div class="col-lg-12">
+                                            <div class="checkbox" style="margin-top:0;">
+                                                <label class="login-labels"><input type="checkbox" value="">Stay signed in?</label>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row submit-field">
-                                <div class="col-lg-12">
-                                    <div id="sbox">
-                                        <button  class="btn btn-success" id="login-button" type="submit" value="Login" name="logreg-button">Log-in</button>
+                                    <div class="row submit-field">
+                                        <div class="col-lg-12">
+                                            <div id="sbox">
+                                                <button  class="btn btn-success" id="login-button" type="submit" value="Login" name="logreg-button">Log-in</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row buffer-10"></div>
-                            <div class="row register-link">
-                                <div class="col-lg-12">
-                                    <a href="/register/">Forgot your Password?</a>
-                                </div>
-                            </div>
-
-                            </form>
+                                    <div class="row buffer-10"></div>
+                                    <div class="row register-link">
+                                        <div class="col-lg-12">
+                                            <a href="/register/">Forgot your Password?</a>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        </div>
+                     </div>
+                 </div>
             </div>
         </div>
-</div>
         <div class="register">
              <div class="register-content">
                  <div class="col-lg-12">
@@ -155,7 +154,7 @@
                     <h2 class="well-header">Register</h2>
                     <div class="row register-row">
                         <div class="col-lg-12">
-                        <form method="POST" action=".?next={{ reg_redirect_to }}"> {% csrf_token %}
+                        <form method="POST" action="/register/"> {% csrf_token %}
                             <div class="row username-field">
                                 <div class="col-lg-12">
                                     <div class="form-group">
@@ -227,14 +226,13 @@
                                 </div>
                             </div>
 
-                            </form>
-                            </div>
+                        </form>
                         </div>
-                        </div>
-                     </div>
+                    </div>
+                </div>
+              </div>
             </div>
         </div>
-
 
     </div>
 </div>

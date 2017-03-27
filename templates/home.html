@@ -38,7 +38,7 @@
                                                     <div class="modal-body">
                                                         <div class="form-horizontal row">
                                                             <div class="col-lg-12">
-                                                                <form method="post" enctype="multipart/form-data">
+                                                                <form method="post" action="/upload_schematic/" enctype="multipart/form-data">
                                                                     {% csrf_token %}
                                                                     <div class="form-group col-lg-12">
                                                                         <label>Schematic File</label><br>
@@ -57,8 +57,8 @@
                                                                         <label>Description</label>
                                                                         <input type="text" name="description" class="form-control">
                                                                     </div>
-                                                        <button class="btn btn-primary" id="schematic-submit-btn" type="submit">Submit</button>
-                                                        <button type="button" class="btn btn-danger close-button" id="" data-dismiss="modal">Close</button>
+                                                                    <button class="btn btn-primary" id="schematic-submit-btn" type="submit">Submit</button>
+                                                                    <button type="button" class="btn btn-danger close-button" id="" data-dismiss="modal">Close</button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -108,7 +108,7 @@
 
                                                       <div class="row schematic-tags">
                                                           <div class="col-lg-12">
-                                                              <h4><a href="" target="_blank" class="label label-custom">tags</a></h4>
+                                                              <h4><a href="" target="_blank" class="label label-custom">add tags</a></h4>
                                                           </div>
                                                       </div>
                                                       <div class="row top-buffer-10"></div>
@@ -139,6 +139,8 @@
                                                                   <div class="modal-dialog">
                                                                     <!-- Modal content-->
                                                                       <div class="modal-content">
+                                                                        <form method="post" action="/edit_schematic/" enctype="multipart/form-data">{% csrf_token %}
+                                                                          <input type="hidden" name="schemID" value="{{ image.id }}"> <!-- getting current sched id -->
                                                                           <div class="modal-header">
                                                                               <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                                               <h4 class="modal-title">Edit Schematic Details</h4>
@@ -159,6 +161,7 @@
                                                                                 </div>
                                                                             </div>
                                                                           </div>
+                                                                        </form>
                                                                       </div>
                                                                   </div>
                                                               </div>

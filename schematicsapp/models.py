@@ -8,7 +8,7 @@ class TagModel(models.Model):
 
     class Meta:
         ordering = ["-created_at"]
-        
+
 
 class SchematicModel(models.Model):
     schematic_name = models.CharField(max_length = 30, default = 'no name')
@@ -20,3 +20,6 @@ class SchematicModel(models.Model):
 
     class Meta:
         ordering = ["-created_at"]
+
+    def getID(self):
+        return self.id

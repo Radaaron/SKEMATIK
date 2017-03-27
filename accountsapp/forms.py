@@ -16,11 +16,13 @@ class RegisterForm(forms.ModelForm):
         fields = ('username', 'email', 'first_name', 'last_name',)
 
     def clean(self):
+        username = self.cleaned_data.get("username")
+        email = self.cleaned_data.get('email')
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
-        email = self.cleaned_data.get('email')
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError("Passwords don't match")
+        # validation for email and username goes here later
         return self.cleaned_data
 
     def save(self, commit=True):

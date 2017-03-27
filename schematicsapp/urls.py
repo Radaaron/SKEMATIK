@@ -7,6 +7,7 @@ from . import views
 
 urlpatterns = [
     url(r'^upload_schematic/', views.upload_schematic),
+    url(r'^edit_schematic/', views.edit_schematic),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

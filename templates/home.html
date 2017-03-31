@@ -2,10 +2,6 @@
 {% load static %}
 {% block css%} <link rel="stylesheet" type="text/css" href="{% static 'schematicsapp/css/home_style.css' %}" /> {% endblock css %}
 
-
-{% block javascript %}
-
-{% endblock javascript %}
 {% block content %}
 <div class="container-fluid">
   <div class="row">
@@ -47,12 +43,10 @@
                                                                                 <input class="upload"  type="file" name="image">
                                                                         </div>
                                                                     </div>
-
                                                                     <div class="form-group col-lg-12">
                                                                         <label>Schematic Name</label>
                                                                         <input type="text" name="name" class="form-control">
                                                                     </div>
-
                                                                     <div class="form-group col-lg-12">
                                                                         <label>Description</label>
                                                                         <input type="text" name="description" class="form-control">
@@ -67,21 +61,18 @@
                                             </div>
                                         </div>
                                   </div>
-
                                   <div class="col-lg-10">
                                       <p id="upload-message">Upload your projects by clicking the "Add Schematic" button. You can also add additional information to your schematic models in order to organize
                                       and describe them better.</p>
                                   </div>
                               </div>
-
                               <div class="row top-buffer-20"></div>
-
                               <div class="well well-sm" id="well-custom">
                                   <h4 id="well-title">Schematic List</h4>
                               </div>
                               <div id="products" class="row">
                                   {% for image in images %}
-                                  <div class="item col-lg-12">
+                                  <div class="item col-lg-12" id="{{ image.id }}" onClick="get_id(this.id)">
                                       <div class="panel panel-default">
                                           <div class="panel-body">
                                               <div class="row panel-content">
@@ -140,7 +131,6 @@
                                                                     <!-- Modal content-->
                                                                       <div class="modal-content">
                                                                         <form method="post" action="/edit_schematic/" enctype="multipart/form-data">{% csrf_token %}
-                                                                          <input type="hidden" name="schemID" value="{{ image.id }}"> <!-- getting current sched id -->
                                                                           <div class="modal-header">
                                                                               <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                                               <h4 class="modal-title">Edit Schematic Details</h4>
@@ -148,6 +138,10 @@
                                                                           <div class="modal-body">
                                                                               <div class="form-horizontal row">
                                                                                   <div class="col-lg-12">
+                                                                                    <div class="form-group col-lg-12">
+                                                                                        <label>Schematic ID</label>
+                                                                                        <input type="text" name="schemID" class="form-control">
+                                                                                    </div>
                                                                                      <div class="form-group col-lg-12">
                                                                                          <label>Schematic Name</label>
                                                                                          <input type="text" name="name" class="form-control">
@@ -166,6 +160,9 @@
                                                                   </div>
                                                               </div>
                                                               <button type="button" class="btn btn-primary" id="download-button"><span class="glyphicon glyphicon-download"></span> Download Schematic</button>
+                                                          </div>
+                                                          <div class="col-lg-12">
+                                                              <h4 class="group inner list-group-item-text description-text" id="schemID" value="{{image.id}} ">ID: #{{ image.id }}</h4>
                                                           </div>
                                                       </div>
                                                   </div>
@@ -201,5 +198,12 @@
   </div>
 </div>
 
+{% block javascript %}
+<script type="text/javascript">
+  function get_id(id){ // gets item id corresponding to schematic id for use depending on button use
+    alert(id);
+  }
+</script>
+{% endblock javascript %}
 
 {% endblock %}

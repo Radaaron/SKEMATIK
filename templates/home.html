@@ -72,7 +72,7 @@
                               </div>
                               <div id="products" class="row">
                                   {% for image in images %}
-                                  <div class="item col-lg-12" id="{{ image.id }}" onClick="get_id(this.id)">
+                                  <div class="item col-lg-12">
                                       <div class="panel panel-default">
                                           <div class="panel-body">
                                               <div class="row panel-content">
@@ -105,7 +105,7 @@
                                                       <div class="row top-buffer-10"></div>
                                                       <div class="row panel-button-row">
                                                           <div class="col-lg-12">
-                                                              <button type="button" class="btn btn-primary" id="view-button" data-toggle="modal" data-target="#viewSchematicModal"><span class="glyphicon glyphicon-search"></span> View Schematic</button>
+                                                              <button type="button" class="btn btn-primary schem-item-button" value="{{ image.id }}" id="view-button" data-toggle="modal" data-target="#viewSchematicModal"><span class="glyphicon glyphicon-search"></span> View Schematic</button>
                                                               <!-- Modal -->
                                                               <div id="viewSchematicModal" class="modal fade" role="dialog">
                                                                   <div class="modal-dialog">
@@ -124,7 +124,7 @@
                                                                       </div>
                                                                   </div>
                                                               </div>
-                                                              <button type="button" class="btn btn-primary" id="edit-button" data-toggle="modal" data-target="#editSchematicModal"><span class="glyphicon glyphicon-edit"></span> Edit Schematic Details</button>
+                                                              <button type="button" class="btn btn-primary schem-item-button" value="{{ image.id }}" id="edit-button" data-toggle="modal" data-target="#editSchematicModal"><span class="glyphicon glyphicon-edit"></span> Edit Schematic Details</button>
                                                               <!-- Modal -->
                                                               <div id="editSchematicModal" class="modal fade" role="dialog">
                                                                   <div class="modal-dialog">
@@ -159,10 +159,7 @@
                                                                       </div>
                                                                   </div>
                                                               </div>
-                                                              <button type="button" class="btn btn-primary" id="download-button"><span class="glyphicon glyphicon-download"></span> Download Schematic</button>
-                                                          </div>
-                                                          <div class="col-lg-12">
-                                                              <h4 class="group inner list-group-item-text description-text" id="schemID" value="{{image.id}} ">ID: #{{ image.id }}</h4>
+                                                              <button type="button" class="btn btn-primary schem-item-button" id="download-button" value="{{ image.id }}"><span class="glyphicon glyphicon-download"></span> Download Schematic</button>
                                                           </div>
                                                       </div>
                                                   </div>
@@ -200,9 +197,15 @@
 
 {% block javascript %}
 <script type="text/javascript">
-  function get_id(id){ // gets item id corresponding to schematic id for use depending on button use
-    alert(id);
-  }
+  // global variables
+  var schemID;
+  // jquery
+  $(document).ready(function() {
+    $(".schem-item-button").click(function() { // saves clicked schem-item-button id (which was initally assigned with corresponding image.id)
+      schemID = $(this).attr('value');
+      alert(schemID);
+    });
+  });
 </script>
 {% endblock javascript %}
 

@@ -1,218 +1,246 @@
 {% extends 'sitebase.html' %}
 {% load static %}
-{% block css%} <link rel="stylesheet" type="text/css" href="{% static 'schematicsapp/css/home_style.css' %}" /> {% endblock css %}
-
+{% block css%}
+<link rel="stylesheet" type="text/css" href="{% static 'schematicsapp/css/home_style.css' %}" />
+{% endblock css %}
 {% block content %}
 <div class="container-fluid">
-  <div class="row">
-      <div class="row top-buffer-20"></div>
-      <div class="row main-content">
-          <div class="col-lg-12">
-              <div class="row schematics-list">
-                  <div class="col-lg-10 col-lg-offset-1">
-                      <div class="row">
-                          <div class="col-lg-12">
-                              <div class="row button-row">
-                                  <div class="col-lg-12">
-                                      <h1 id="mainpage-title">SKEMATIK</h1>
-                                  </div>
-                              </div>
-                              <div class="row top-buffer-20"></div>
-                              <div class="row upload-row">
-                                  <div class="row top-buffer-10"></div>
-                                  <div class="col-lg-2">
-                                      <button type="button" class="btn btn-primary" id="add-button" data-toggle="modal" data-target="#addSchematicModal">Add Schematic</button>
-                                        <!-- Modal -->
-                                        <div id="addSchematicModal" class="modal fade" role="dialog">
-                                            <div class="modal-dialog">
-                                                <!-- Modal content-->
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        <h4 class="modal-title">Add Schematic</h4>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="form-horizontal row">
-                                                            <div class="col-lg-12">
-                                                                <form method="post" action="/upload_schematic/" enctype="multipart/form-data">
-                                                                    {% csrf_token %}
-                                                                    <div class="form-group col-lg-12">
-                                                                        <label>Schematic File</label><br>
-                                                                        <div class="fileUpload btn btn-primary" id="choose-button">
-                                                                            <span>Choose File</span>
-                                                                                <input class="upload"  type="file" name="image">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group col-lg-12">
-                                                                        <label>Schematic Name</label>
-                                                                        <input type="text" name="name" class="form-control">
-                                                                    </div>
-                                                                    <div class="form-group col-lg-12">
-                                                                        <label>Description</label>
-                                                                        <input type="text" name="description" class="form-control">
-                                                                    </div>
-                                                                    <button class="btn btn-primary" id="schematic-submit-btn" type="submit">Submit</button>
-                                                                    <button type="button" class="btn btn-danger close-button" id="" data-dismiss="modal">Close</button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                  </div>
-                                  <div class="col-lg-10">
-                                      <p id="upload-message">Upload your projects by clicking the "Add Schematic" button. You can also add additional information to your schematic models in order to organize
-                                      and describe them better.</p>
-                                  </div>
-                              </div>
-                              <div class="row top-buffer-20"></div>
-                              <div class="well well-sm" id="well-custom">
-                                  <h4 id="well-title">Schematic List</h4>
-                              </div>
-                              <div id="products" class="row">
-                                  {% for image in images %}
-                                  <div class="item col-lg-12">
-                                      <div class="panel panel-default">
-                                          <div class="panel-body">
-                                              <div class="row panel-content">
-                                                  <div class="col-lg-4">
-                                                      <div class="thumbnail">
-                                                          <img class="group list-group-image schematic-image" src="{{ image.schematic_image.url }}"  alt="" />
-                                                      </div>
-                                                  </div>
-                                                  <div class="col-lg-8">
-                                                      <div class="row schematic-title">
-                                                          <div class="col-lg-12">
-                                                              <h2 class="group inner list-group-item-heading">{{ image.schematic_name }}</h2>
-                                                          </div>
-                                                      </div>
-                                                      <div class="row top-buffer-10"></div>
-                                                      <div class="row schematic-desc">
-                                                          <div class="col-lg-12">
-                                                              <h4 class="group inner list-group-item-text description-text" >{{ image.schematic_description }}</h4>
-                                                          </div>
-                                                      </div>
-                                                      <div class="row top-buffer-20"></div>
-                                                      <div class="row schematic-tags">
-                                                          <div class="col-lg-12">
-                                                              <h4><a href="" target="_blank" class="label label-custom">add tags</a></h4>
-                                                          </div>
-                                                      </div>
-                                                      <div class="row top-buffer-10"></div>
-                                                      <div class="row panel-button-row">
-                                                          <div class="col-lg-12">
-                                                              <button type="button" class="btn btn-primary view-button schem-item-button" value="{{ image.id }}" id="view-button" data-toggle="modal" data-target="#viewSchematicModal"><span class="glyphicon glyphicon-search"></span> View Schematic</button>
-                                                              <!-- Modal -->
-                                                              <div id="viewSchematicModal" class="modal fade" role="dialog">
-                                                                  <div class="modal-dialog">
-                                                                    <!-- Modal content-->
-                                                                      <div class="modal-content" id="modal-viewimage">
-                                                                          <div class="modal-body">
-                                                                              <div class="form-horizontal row">
-                                                                                  <div class="col-lg-12">
-                                                                                    <img class="group list-group-image schematic-image" id="modalSchematicImage" alt=""/>
-                                                                                </div>
-                                                                            </div>
-                                                                          </div>
-                                                                          <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-danger close-button" data-dismiss="modal">Close</button>
-                                                                          </div>
-                                                                      </div>
-                                                                  </div>
-                                                              </div>
-                                                              <button type="button" class="btn btn-primary edit-button schem-item-button" value="{{ image.id }}" id="edit-button" data-toggle="modal" data-target="#editSchematicModal"><span class="glyphicon glyphicon-edit"></span> Edit Schematic Details</button>
-                                                              <!-- Modal -->
-                                                              <div id="editSchematicModal" class="modal fade" role="dialog">
-                                                                  <div class="modal-dialog">
-                                                                    <!-- Modal content-->
-                                                                      <div class="modal-content">
-                                                                        <form method="post" action="/edit_schematic/" enctype="multipart/form-data">{% csrf_token %}
-                                                                          <div class="modal-header">
-                                                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                              <h4 class="modal-title">Edit Schematic Details</h4>
-                                                                          </div>
-                                                                          <div class="modal-body">
-                                                                              <div class="form-horizontal row">
-                                                                                  <div class="col-lg-12">
-                                                                                     <input type="hidden" name="schemID" class="form-control"> <!-- no need for it to be visible-->
-                                                                                     <div class="form-group col-lg-12">
-                                                                                         <label>Schematic Name</label>
-                                                                                         <input type="text" name="name" class="form-control">
-                                                                                     </div>
-                                                                                      <div class="form-group col-lg-12">
-                                                                                          <label>Description</label>
-                                                                                          <input type="text" name="description" class="form-control">
-                                                                                      </div>
-                                                                                      <button class="btn btn-primary" id="schematic-submitedit-btn" type="submit">Submit</button>
-                                                                                      <button type="button" class="btn btn-danger close-button"data-dismiss="modal">Close</button>
-                                                                                </div>
-                                                                            </div>
-                                                                          </div>
-                                                                        </form>
-                                                                      </div>
-                                                                  </div>
-                                                              </div>
-                                                              <button type="button" class="btn btn-primary schem-item-button" id="download-button" value="{{ image.id }}"><span class="glyphicon glyphicon-download"></span> Download Schematic</button>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  {% endfor %}
-                              </div>
-                              {% if users.has_other_pages %}
-                              <div class="pagination">
-                                  <span class="step-links">
-                                      {% if images.has_previous %}
-                                      <a href="?page={{ contacts.previous_page_number }}">previous</a>
-                                      {% endif %}
-                                        <span class="current">
-                                            Page {{ images.number }} of {{ images.paginator.num_pages }}.
-                                        </span>
-                                        {% if images.has_next %}
-                                      <a href="?page={{ contacts.next_page_number }}">next</a>
-                                        {% endif %}
-                                    </span>
-                              </div>
-                              {% endif %}
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+	<div class="row">
+		<div class="row top-buffer-20"></div>
+		<div class="row main-content">
+			<div class="col-lg-12">
+				<div class="row schematics-list">
+					<div class="col-lg-10 col-lg-offset-1">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="row button-row">
+									<div class="col-lg-12">
+										<h1 id="mainpage-title">SKEMATIK</h1>
+									</div>
+								</div>
+								<div class="row top-buffer-20"></div>
+								<div class="row upload-row">
+									<div class="row top-buffer-10"></div>
+									<div class="col-lg-2">
+										<button type="button" class="btn btn-primary" id="add-button" data-toggle="modal" data-target="#addSchematicModal">Add Schematic</button>
+										<!-- Modal -->
+										<div id="addSchematicModal" class="modal fade" role="dialog">
+											<div class="modal-dialog">
+												<!-- Modal content-->
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal">&times;</button>
+														<h4 class="modal-title">Add Schematic</h4>
+													</div>
+													<div class="modal-body">
+														<div class="form-horizontal row">
+															<div class="col-lg-12">
+																<form method="post" action="/upload_schematic/" enctype="multipart/form-data">
+																	{% csrf_token %}
+																	<div class="form-group col-lg-12">
+																		<label>Schematic File</label><br>
+																		<div class="fileUpload btn btn-primary" id="choose-button">
+																			<span>Choose File</span>
+																			<input class="upload"  type="file" name="image">
+																		</div>
+																	</div>
+																	<div class="form-group col-lg-12">
+																		<label>Schematic Name</label>
+																		<input type="text" name="name" class="form-control">
+																	</div>
+																	<div class="form-group col-lg-12">
+																		<label>Description</label>
+																		<input type="text" name="description" class="form-control">
+																	</div>
+																	<button class="btn btn-primary" id="schematic-submit-btn" type="submit">Submit</button>
+																	<button type="button" class="btn btn-danger close-button" id="" data-dismiss="modal">Close</button>
+																</form>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-10">
+										<p id="upload-message">Upload your projects by clicking the "Add Schematic" button. You can also add additional information to your schematic models in order to organize
+											and describe them better.
+										</p>
+									</div>
+								</div>
+								<div class="row top-buffer-20"></div>
+								<div class="well well-sm" id="well-custom">
+									<h4 id="well-title">Schematic List</h4>
+								</div>
+								<div id="products" class="row">
+									{% for image in images %}
+									<div class="item col-lg-12">
+										<div class="panel panel-default">
+											<div class="panel-body">
+												<div class="row panel-content">
+													<div class="col-lg-4">
+														<div class="thumbnail">
+															<img class="group list-group-image schematic-image" src="{{ image.schematic_image.url }}"  alt="" />
+														</div>
+													</div>
+													<div class="col-lg-8">
+														<div class="row schematic-title">
+															<div class="col-lg-12">
+																<h2 class="group inner list-group-item-heading">{{ image.schematic_name }}</h2>
+															</div>
+														</div>
+														<div class="row top-buffer-10"></div>
+														<div class="row schematic-desc">
+															<div class="col-lg-12">
+																<h4 class="group inner list-group-item-text description-text" >{{ image.schematic_description }}</h4>
+															</div>
+														</div>
+														<div class="row top-buffer-20"></div>
+														<div class="row schematic-tags">
+															<div class="col-lg-1">
+																<h4><a id="add-tags-button" data-toggle="modal" data-target="#addTagsModal" class="label label-custom">add tag</a></h4>
+																<!-- Modal -->
+																<div id="addTagsModal" class="modal fade" role="dialog">
+																	<div class="modal-dialog">
+																		<!-- Modal content-->
+																		<div class="modal-content">
+																			<form method="post" action="/edit_schematic/" enctype="multipart/form-data">
+																				{% csrf_token %}
+																				<div class="modal-header">
+																					<button type="button" class="close" data-dismiss="modal">&times;</button>
+																					<h4 class="modal-title">Add Tag</h4>
+																				</div>
+																				<div class="modal-body">
+																					<div class="form-horizontal row">
+																						<div class="col-lg-12">
+																							<input type="hidden" name="schemID" class="form-control"> <!-- no need for it to be visible-->
+																							<div class="form-group col-lg-12">
+																								<label>Tag Name</label>
+																								<input type="text" name="name" class="form-control">
+																							</div>
+																							<button class="btn btn-primary" id="tag-submit" type="submit">Submit</button>
+																							<button type="button" class="btn btn-danger close-button"data-dismiss="modal">Close</button>
+																						</div>
+																					</div>
+																				</div>
+																			</form>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="row top-buffer-10"></div>
+														<div class="row panel-button-row">
+															<div class="col-lg-12">
+																<button type="button" class="btn btn-primary view-button schem-item-button" value="{{ image.id }}" id="view-button" data-toggle="modal" data-target="#viewSchematicModal"><span class="glyphicon glyphicon-search"></span> View Schematic</button>
+																<!-- Modal -->
+																<div id="viewSchematicModal" class="modal fade" role="dialog">
+																	<div class="modal-dialog">
+																		<!-- Modal content-->
+																		<div class="modal-content" id="modal-viewimage">
+																			<div class="modal-body">
+																				<div class="form-horizontal row">
+																					<div class="col-lg-12">
+																						<img class="group list-group-image schematic-image" id="modalSchematicImage" alt=""/>
+																					</div>
+																				</div>
+																			</div>
+																			<div class="modal-footer">
+																				<button type="button" class="btn btn-danger close-button" data-dismiss="modal">Close</button>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<button type="button" class="btn btn-primary edit-button schem-item-button" value="{{ image.id }}" id="edit-button" data-toggle="modal" data-target="#editSchematicModal"><span class="glyphicon glyphicon-edit"></span> Edit Schematic Details</button>
+																<!-- Modal -->
+																<div id="editSchematicModal" class="modal fade" role="dialog">
+																	<div class="modal-dialog">
+																		<!-- Modal content-->
+																		<div class="modal-content">
+																			<form method="post" action="/edit_schematic/" enctype="multipart/form-data">
+																				{% csrf_token %}
+																				<div class="modal-header">
+																					<button type="button" class="close" data-dismiss="modal">&times;</button>
+																					<h4 class="modal-title">Edit Schematic Details</h4>
+																				</div>
+																				<div class="modal-body">
+																					<div class="form-horizontal row">
+																						<div class="col-lg-12">
+																							<input type="hidden" name="schemID" class="form-control"> <!-- no need for it to be visible-->
+																							<div class="form-group col-lg-12">
+																								<label>Schematic Name</label>
+																								<input type="text" name="name" class="form-control">
+																							</div>
+																							<div class="form-group col-lg-12">
+																								<label>Description</label>
+																								<input type="text" name="description" class="form-control">
+																							</div>
+																							<button class="btn btn-primary" id="schematic-submitedit-btn" type="submit">Submit</button>
+																							<button type="button" class="btn btn-danger close-button"data-dismiss="modal">Close</button>
+																						</div>
+																					</div>
+																				</div>
+																			</form>
+																		</div>
+																	</div>
+																</div>
+																<button type="button" class="btn btn-primary schem-item-button" id="download-button" value="{{ image.id }}"><span class="glyphicon glyphicon-download"></span> Download Schematic</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									{% endfor %}
+								</div>
+								{% if users.has_other_pages %}
+								<div class="pagination">
+									<span class="step-links">
+									{% if images.has_previous %}
+									<a href="?page={{ contacts.previous_page_number }}">previous</a>
+									{% endif %}
+									<span class="current">
+									Page {{ images.number }} of {{ images.paginator.num_pages }}.
+									</span>
+									{% if images.has_next %}
+									<a href="?page={{ contacts.next_page_number }}">next</a>
+									{% endif %}
+									</span>
+								</div>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-
 {% block javascript %}
 <script type="text/javascript">
-  // global variables
-  var schemID;
-  // jquery
-  $(document).ready(function() {
-    $(".schem-item-button").click(function() { // saves clicked schem-item-button id (which was initally assigned with corresponding image.id)
-      schemID = $(this).attr('value');
-    });
-    $('#editSchematicModal').on('show.bs.modal', function(e) { // sends schemID to edit modal form hidden schemID input
-      $(e.currentTarget).find('input[name="schemID"]').val(schemID);
-    });
-    $('#viewSchematicModal').on('show.bs.modal', function(e) { // uses schemID to send schem image url to img element in view modal
-      var url, temp, src = "{% static 'schematicsapp/images/default-image.jpg' %}";
-      {% for image in images %}
-        temp = {{ image.id }};
-        if(temp == schemID){
-          // url = {{ image.schematic_image.url }}; // THIS DOESNT WORK YET LOL
-          // src = url + "";
-        }
-      {% endfor %}
-      alert(src);
-      $("#modalSchematicImage").attr("src", src);
-    });
-  });
+	// global variables
+	var schemID;
+	// jquery
+	$(document).ready(function() {
+	  $(".schem-item-button").click(function() { // saves clicked schem-item-button id (which was initally assigned with corresponding image.id)
+	    schemID = $(this).attr('value');
+	  });
+	  $('#editSchematicModal').on('show.bs.modal', function(e) { // sends schemID to edit modal form hidden schemID input
+	    $(e.currentTarget).find('input[name="schemID"]').val(schemID);
+	  });
+	  $('#viewSchematicModal').on('show.bs.modal', function(e) { // uses schemID to send schem image url to img element in view modal
+	    var url, temp, src = "{% static 'schematicsapp/images/default-image.jpg' %}";
+	    {% for image in images %}
+	      temp = {{ image.id }};
+	      if(temp == schemID){
+	        // url = {{ image.schematic_image.url }}; // THIS DOESNT WORK YET LOL
+	        // src = url + "";
+	      }
+	    {% endfor %}
+	    $("#modalSchematicImage").attr("src", src);
+	  });
+	});
 </script>
 {% endblock javascript %}
-
 {% endblock %}

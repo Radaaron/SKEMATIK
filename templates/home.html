@@ -87,16 +87,13 @@
                                                               <h2 class="group inner list-group-item-heading">{{ image.schematic_name }}</h2>
                                                           </div>
                                                       </div>
-
                                                       <div class="row top-buffer-10"></div>
-
                                                       <div class="row schematic-desc">
                                                           <div class="col-lg-12">
                                                               <h4 class="group inner list-group-item-text description-text" >{{ image.schematic_description }}</h4>
                                                           </div>
                                                       </div>
                                                       <div class="row top-buffer-20"></div>
-
                                                       <div class="row schematic-tags">
                                                           <div class="col-lg-12">
                                                               <h4><a href="" target="_blank" class="label label-custom">add tags</a></h4>
@@ -114,7 +111,7 @@
                                                                           <div class="modal-body">
                                                                               <div class="form-horizontal row">
                                                                                   <div class="col-lg-12">
-                                                                                      <img class="group list-group-image" id="modalSchematicImage" src="{% static 'schematicsapp/images/default-image.jpg' %}"  alt="" />
+                                                                                    <img class="group list-group-image schematic-image" id="modalSchematicImage" alt=""/>
                                                                                 </div>
                                                                             </div>
                                                                           </div>
@@ -172,17 +169,15 @@
                                       {% if images.has_previous %}
                                       <a href="?page={{ contacts.previous_page_number }}">previous</a>
                                       {% endif %}
-
                                         <span class="current">
                                             Page {{ images.number }} of {{ images.paginator.num_pages }}.
                                         </span>
-
                                         {% if images.has_next %}
                                       <a href="?page={{ contacts.next_page_number }}">next</a>
                                         {% endif %}
                                     </span>
                               </div>
-                                {% endif %}
+                              {% endif %}
                           </div>
                       </div>
                   </div>
@@ -201,8 +196,20 @@
     $(".schem-item-button").click(function() { // saves clicked schem-item-button id (which was initally assigned with corresponding image.id)
       schemID = $(this).attr('value');
     });
-    $('#editSchematicModal').on('show.bs.modal', function(e) { // sends schemID to edit_schematic modal form
-      $(e.currentTarget).find('input[name="schemID"]').val(schemID); //populate the textbox
+    $('#editSchematicModal').on('show.bs.modal', function(e) { // sends schemID to edit modal form hidden schemID input
+      $(e.currentTarget).find('input[name="schemID"]').val(schemID);
+    });
+    $('#viewSchematicModal').on('show.bs.modal', function(e) { // uses schemID to send schem image url to img element in view modal
+      var url, temp, src = "{% static 'schematicsapp/images/default-image.jpg' %}";
+      {% for image in images %}
+        temp = {{ image.id }};
+        if(temp == schemID){
+          // url = {{ image.schematic_image.url }}; // THIS DOESNT WORK YET LOL
+          // src = url + "";
+        }
+      {% endfor %}
+      alert(src);
+      $("#modalSchematicImage").attr("src", src);
     });
   });
 </script>

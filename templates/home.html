@@ -105,7 +105,7 @@
                                                       <div class="row top-buffer-10"></div>
                                                       <div class="row panel-button-row">
                                                           <div class="col-lg-12">
-                                                              <button type="button" class="btn btn-primary schem-item-button" value="{{ image.id }}" id="view-button" data-toggle="modal" data-target="#viewSchematicModal"><span class="glyphicon glyphicon-search"></span> View Schematic</button>
+                                                              <button type="button" class="btn btn-primary view-button schem-item-button" value="{{ image.id }}" id="view-button" data-toggle="modal" data-target="#viewSchematicModal"><span class="glyphicon glyphicon-search"></span> View Schematic</button>
                                                               <!-- Modal -->
                                                               <div id="viewSchematicModal" class="modal fade" role="dialog">
                                                                   <div class="modal-dialog">
@@ -124,7 +124,7 @@
                                                                       </div>
                                                                   </div>
                                                               </div>
-                                                              <button type="button" class="btn btn-primary schem-item-button" value="{{ image.id }}" id="edit-button" data-toggle="modal" data-target="#editSchematicModal"><span class="glyphicon glyphicon-edit"></span> Edit Schematic Details</button>
+                                                              <button type="button" class="btn btn-primary edit-button schem-item-button" value="{{ image.id }}" id="edit-button" data-toggle="modal" data-target="#editSchematicModal"><span class="glyphicon glyphicon-edit"></span> Edit Schematic Details</button>
                                                               <!-- Modal -->
                                                               <div id="editSchematicModal" class="modal fade" role="dialog">
                                                                   <div class="modal-dialog">
@@ -138,10 +138,7 @@
                                                                           <div class="modal-body">
                                                                               <div class="form-horizontal row">
                                                                                   <div class="col-lg-12">
-                                                                                    <div class="form-group col-lg-12">
-                                                                                        <label>Schematic ID</label>
-                                                                                        <input type="text" name="schemID" class="form-control">
-                                                                                    </div>
+                                                                                     <input type="hidden" name="schemID" class="form-control"> <!-- no need for it to be visible-->
                                                                                      <div class="form-group col-lg-12">
                                                                                          <label>Schematic Name</label>
                                                                                          <input type="text" name="name" class="form-control">
@@ -203,7 +200,9 @@
   $(document).ready(function() {
     $(".schem-item-button").click(function() { // saves clicked schem-item-button id (which was initally assigned with corresponding image.id)
       schemID = $(this).attr('value');
-      alert(schemID);
+    });
+    $('#editSchematicModal').on('show.bs.modal', function(e) { // sends schemID to edit_schematic modal form
+      $(e.currentTarget).find('input[name="schemID"]').val(schemID); //populate the textbox
     });
   });
 </script>

@@ -1,49 +1,47 @@
 {%load static%}
 <html>
-  <head>
-      <link rel="stylesheet" type="text/css" href="{% static 'schematicsapp/css/sitebase_style.css' %}" />
-      {% block css %}{% endblock css %}
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-      <!-- Latest compiled and minified JavaScript -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
-      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <title>SKEMATIK</title>
-  </head>
-
-  <body style="padding-top:50px;">
-    <div class="container-fluid" id="page-wrapper">
-        <nav class="navbar navbar-ian navbar-fixed-top">
-            <div class="navbar-header" style="margin-left:145px;">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="{%url 'home' %}"><img src="{% static 'schematicsapp/images/skematik.png' %}" width="90px"; style=";margin-right:10px;margin-bottom:200px;"></a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right" style="margin-right:200px">
-                    <li>
-                        <img src="{% static 'schematicsapp/images/ian.jpg' %}" style="border-radius:50%;width:40px;margin-top:5px;">
-
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.first_name }} {{user.last_name}}<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="http://www.fgruber.ch/" target="_blank"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> User Settings</a></li>
-                            <li><a href="{%url 'logout' %}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </nav>
-    </div>
-      {% block content %}
-      {% endblock %}
-
-  </body>
+	<head>
+		<link rel="stylesheet" type="text/css" href="{% static 'schematicsapp/css/sitebase_style.css' %}" />
+		{% block css %}{% endblock css %}
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<!-- Form Validation Script -->
+		<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+		<title>SKEMATIK</title>
+	</head>
+	<body style="padding-top:50px;">
+		<div class="container-fluid" id="page-wrapper">
+			<nav class="navbar navbar-ian navbar-fixed-top">
+				<div class="navbar-header" style="margin-left:145px;">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="{%url 'home' %}"><img src="{% static 'schematicsapp/images/skematik.png' %}" width="90px"; style=";margin-right:10px;margin-bottom:200px;"></a>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right" style="margin-right:200px">
+						<li>
+							<img src="{% static 'schematicsapp/images/user-icon.png' %}" style="border-radius:50%;width:40px;margin-top:5px;">
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ user.first_name }} {{user.last_name}}<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="http://www.fgruber.ch/" target="_blank"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> User Settings</a></li>
+								<li><a href="{%url 'logout' %}"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+		</div>
+		{% block content %}
+		{% endblock %}
+	</body>
 </html>

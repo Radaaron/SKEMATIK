@@ -35,7 +35,7 @@
 													<div class="modal-body">
 														<div class="form-horizontal row">
 															<div class="col-lg-12">
-																<form method="post" action="/upload_schematic/" enctype="multipart/form-data">
+																<form method="post" action="/upload_schematic/" enctype="multipart/form-data" id="addSchematicForm">
 																	{% csrf_token %}
 																	<div class="form-group col-lg-12">
 																		<label>Schematic File</label><br>
@@ -247,6 +247,8 @@
 	    $("#modalSchematicImage").attr("src", src);
 	  });
 	});
+	// form validation
+	
 </script>
 {% endblock javascript %}
 {% endblock %}

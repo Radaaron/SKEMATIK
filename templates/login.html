@@ -1,253 +1,241 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n widget_tweaks %}
-
-{% block css%} <link rel="stylesheet" type="text/css" href="{% static 'schematicsapp/css/login_style.css' %}" /> {%endblock css %}
-
+{% block css%}
+<link rel="stylesheet" type="text/css" href="{% static 'schematicsapp/css/login_style.css' %}" />
+{%endblock css %}
 {% block javascript %}
 <script>
-   $('.carousel').carousel();
-
-   $('form').submit(function(e){
-        e.preventDefault();
-        var form = $(e.target);
-
-        $.ajax({
-            url: '{% url 'register'%}',
-            type: 'post',
-            data: account_form.serialize() + '&' + form.serialize(),
-            error: function(xhr, ajaxOptions, thrownError){ alert(thrownError); },
-            success: function(){}
-        })
- })
+	$('.carousel').carousel();
+	$('form').submit(function(e){
+	     e.preventDefault();
+	     var form = $(e.target);
+	     $.ajax({
+	         url: '{% url 'register'%}',
+	         type: 'post',
+	         data: account_form.serialize() + '&' + form.serialize(),
+	         error: function(xhr, ajaxOptions, thrownError){ alert(thrownError); },
+	         success: function(){}
+	     })
+	})
+  // form validation
+  
 </script>
 {% endblock javascript %}
 {% block content %}
 <div class="container-fluid">
-    <div class="row" style="margin-left:-15px;margin-right:-15px;">
-        <div class="carousel slide carousel-fade" data-ride="carousel">
-            <!-- Indicators -->
-            <!---
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-            </ol>
-            -->
-           <!-- Slides Wrapper -->
-            <div class="carousel-inner">
-                <div class="item active">
-                </div>
-
-                <div class="item">
-                </div>
-
-                <div class="item">
-                </div>
-            </div>
-
-            <!-- Controls -->
-            <!---
-            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                <span class="icon-prev"></span>
-            </a>
-            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                <span class="icon-next"></span>
-            </a>
-              -->
-        </div>
-        <div class="row message">
-             <div class="col-lg-12 message-content">
-                 <div class="col-lg-12">
-                     <h1 id="welcome-message">Welcome to Skematik!</h1>
-                 </div>
-
-                 <div class="row">
-                     <div class="col-lg-1 col-lg-offset-1">
-                         <img src="{% static 'schematicsapp/images/user-icon.png' %}" style="width:40px;">
-                     </div>
-                     <div class="col-lg-10">
-                         <h4 class="sub-message">Edit & Update your Profile</h4>
-                     </div>
-                 </div>
-
-                 <div class="row">
-                     <div class="col-lg-1 col-lg-offset-1">
-                         <img src="{% static 'schematicsapp/images/file-upload.ico' %}" style="width:40px;">
-                     </div>
-                     <div class="col-lg-10">
-                         <h4 class="sub-message">Upload & Store Schematics</h4>
-                     </div>
-
-                     <div class="row">
-                     <div class="col-lg-1 col-lg-offset-1">
-                         <img src="{% static 'schematicsapp/images/share-icon.png' %}" style="width:40px; margin-left:12px;">
-                     </div>
-                     <div class="col-lg-10">
-                         <h4 class="sub-message" style="margin-left:10px;">Add Schematic Tags</h4>
-                     </div>
-                     </div>
-                 </div>
-            </div>
-        </div>
-
-        <div class="login">
-            <div class="login-content">
-                <div class="col-lg-12">
-                    <div class="well well-login">
-                        <h2 class="well-header">Log-in</h2>
-                        <div class="row login-row">
-                            <div class="col-lg-12">
-                                <form method="POST" action=".?next={{ log_redirect_to }}"> {% csrf_token %}
-                                    <div class="row username-field">
-                                        <div class="col-lg-12">
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span> <label class="label-username">Username</label></span>
-                                                    <input class='form-control' type="text" name="username" value="" id="username">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row password-field">
-                                        <div class="col-lg-12">
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"> </span> <label class="label-pass">Password</label></span>
-                                                    <input class='form-control' type="password" name="password" value="" id="password">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row checkbox-field">
-                                        <div class="col-lg-12">
-                                            <div class="checkbox" style="margin-top:0;">
-                                                <label class="login-labels"><input type="checkbox" value="">Stay signed in?</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row submit-field">
-                                        <div class="col-lg-12">
-                                            <div id="sbox">
-                                                <button  class="btn btn-success" id="login-button" type="submit" value="Login" name="logreg-button">Log-in</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row buffer-10"></div>
-                                    <div class="row register-link">
-                                        <div class="col-lg-12">
-                                            <a href="/register/">Forgot your Password?</a>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                     </div>
-                 </div>
-            </div>
-        </div>
-        <div class="register">
-             <div class="register-content">
-                 <div class="col-lg-12">
-                <div class="well well-register">
-                    <h2 class="well-header">Register</h2>
-                    <div class="row register-row">
-                        <div class="col-lg-12">
-                        <form method="POST" action="/register/"> {% csrf_token %}
-                            <div class="row username-field">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span> <label class="label-username">Username</label></span>
-                                            <input class='form-control' type="text" name="username" value="" id="reg-user">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row name-field">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span> <label class="label-first_name">First Name</label></span>
-                                            <input class='form-control' type="text" name="first_name" value="" id="reg-first_name">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span> <label class="label-last_name">Last Name</label></span>
-                                            <input class='form-control' type="text" name="last_name" value="" id="reg-last_name">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row password-field">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"> </span> <label class="label-pass1">Password</label></span>
-                                            <input class='form-control' type="password" name="password1" value="" id="password1">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row password-field">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"> </span> <label class="label-pass2">Repeat Password</label></span>
-                                            <input class='form-control' type="password" name="password2" value="" id="password2">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row email-field">
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"> </span> <label class="label-email">Email</label></span>
-                                            <input class='form-control' type="email" name="email" value="" id="reg-email">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row submit-field">
-                                <div class="col-lg-12">
-                                    <div id="sregbox">
-                                        <button  class="btn btn-success" id="register-button" type="submit" value="Register" name="logreg-button">Register</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </form>
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </div>
-        </div>
-
-    </div>
+	<div class="row" style="margin-left:-15px;margin-right:-15px;">
+		<div class="carousel slide carousel-fade" data-ride="carousel">
+			<!-- Indicators -->
+			<!---
+				<ol class="carousel-indicators">
+				    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+				</ol>
+				-->
+			<!-- Slides Wrapper -->
+			<div class="carousel-inner">
+				<div class="item active">
+				</div>
+				<div class="item">
+				</div>
+				<div class="item">
+				</div>
+			</div>
+			<!-- Controls -->
+			<!---
+				<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+				    <span class="icon-prev"></span>
+				</a>
+				<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+				    <span class="icon-next"></span>
+				</a>
+				  -->
+		</div>
+		<div class="row message">
+			<div class="col-lg-12 message-content">
+				<div class="col-lg-12">
+					<h1 id="welcome-message">Welcome to Skematik!</h1>
+				</div>
+				<div class="row">
+					<div class="col-lg-1 col-lg-offset-1">
+						<img src="{% static 'schematicsapp/images/user-icon.png' %}" style="width:40px;">
+					</div>
+					<div class="col-lg-10">
+						<h4 class="sub-message">Edit & Update your Profile</h4>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-1 col-lg-offset-1">
+						<img src="{% static 'schematicsapp/images/file-upload.ico' %}" style="width:40px;">
+					</div>
+					<div class="col-lg-10">
+						<h4 class="sub-message">Upload & Store Schematics</h4>
+					</div>
+					<div class="row">
+						<div class="col-lg-1 col-lg-offset-1">
+							<img src="{% static 'schematicsapp/images/share-icon.png' %}" style="width:40px; margin-left:12px;">
+						</div>
+						<div class="col-lg-10">
+							<h4 class="sub-message" style="margin-left:10px;">Add Schematic Tags</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="login">
+			<div class="login-content">
+				<div class="col-lg-12">
+					<div class="well well-login">
+						<h2 class="well-header">Log-in</h2>
+						<div class="row login-row">
+							<div class="col-lg-12">
+								<form method="POST" action=".?next={{ log_redirect_to }}">
+									{% csrf_token %}
+									<div class="row username-field">
+										<div class="col-lg-12">
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span> <label class="label-username">Username</label></span>
+													<input class='form-control' type="text" name="username" value="" id="username">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row password-field">
+										<div class="col-lg-12">
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon"><span class="glyphicon glyphicon-lock"> </span> <label class="label-pass">Password</label></span>
+													<input class='form-control' type="password" name="password" value="" id="password">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row checkbox-field">
+										<div class="col-lg-12">
+											<div class="checkbox" style="margin-top:0;">
+												<label class="login-labels"><input type="checkbox" value="">Stay signed in?</label>
+											</div>
+										</div>
+									</div>
+									<div class="row submit-field">
+										<div class="col-lg-12">
+											<div id="sbox">
+												<button  class="btn btn-success" id="login-button" type="submit" value="Login" name="logreg-button">Log-in</button>
+											</div>
+										</div>
+									</div>
+									<div class="row buffer-10"></div>
+									<div class="row register-link">
+										<div class="col-lg-12">
+											<a href="/register/">Forgot your Password?</a>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="register">
+			<div class="register-content">
+				<div class="col-lg-12">
+					<div class="well well-register">
+						<h2 class="well-header">Register</h2>
+						<div class="row register-row">
+							<div class="col-lg-12">
+								<form method="POST" action="/register/">
+									{% csrf_token %}
+									<div class="row username-field">
+										<div class="col-lg-12">
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span> <label class="label-username">Username</label></span>
+													<input class='form-control' type="text" name="username" value="" id="reg-user">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row name-field">
+										<div class="col-lg-6">
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span> <label class="label-first_name">First Name</label></span>
+													<input class='form-control' type="text" name="first_name" value="" id="reg-first_name">
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span> <label class="label-last_name">Last Name</label></span>
+													<input class='form-control' type="text" name="last_name" value="" id="reg-last_name">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row password-field">
+										<div class="col-lg-12">
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon"><span class="glyphicon glyphicon-lock"> </span> <label class="label-pass1">Password</label></span>
+													<input class='form-control' type="password" name="password1" value="" id="password1">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row password-field">
+										<div class="col-lg-12">
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon"><span class="glyphicon glyphicon-lock"> </span> <label class="label-pass2">Repeat Password</label></span>
+													<input class='form-control' type="password" name="password2" value="" id="password2">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row email-field">
+										<div class="col-lg-12">
+											<div class="form-group">
+												<div class="input-group">
+													<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"> </span> <label class="label-email">Email</label></span>
+													<input class='form-control' type="email" name="email" value="" id="reg-email">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row submit-field">
+										<div class="col-lg-12">
+											<div id="sregbox">
+												<button  class="btn btn-success" id="register-button" type="submit" value="Register" name="logreg-button">Register</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <!--<h1> Account Log-in </h1>
-  <form method="post" action=".?next={{ redirect_to }}" > {% csrf_token %}
-    <div class="form-group">
-      <label class="login-labels">Username</label>
-      <input type="text" name="username" class="form-control" id="login">
-    </div>
-    <div class="form-group">
-      <label class="login-labels">Password</label>
-      <input type="password" name="password" class="form-control">
-    </div>
-    <div id="loginbutton">
-      <button class="btn btn-success" type="submit">Log-in</button>
-    </div>
-    <a href="/register/">Register for a new account</a>
-  </form>-->
+	<form method="post" action=".?next={{ redirect_to }}" > {% csrf_token %}
+	  <div class="form-group">
+	    <label class="login-labels">Username</label>
+	    <input type="text" name="username" class="form-control" id="login">
+	  </div>
+	  <div class="form-group">
+	    <label class="login-labels">Password</label>
+	    <input type="password" name="password" class="form-control">
+	  </div>
+	  <div id="loginbutton">
+	    <button class="btn btn-success" type="submit">Log-in</button>
+	  </div>
+	  <a href="/register/">Register for a new account</a>
+	</form>-->
 {% endblock content %}

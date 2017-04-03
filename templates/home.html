@@ -97,14 +97,20 @@
 														</div>
 														<div class="row top-buffer-20"></div>
 														<div class="row schematic-tags">
-															<div class="col-lg-1">
-																<h4><a id="add-tags-button" data-toggle="modal" data-target="#addTagsModal" class="label label-custom">add tag</a></h4>
+															<!-- Iteration for tags -->
+															{% for tag in image.schematic_tags.all %}
+															<div class="col-md-2">
+																<button type="button" class="btn btn-primary tag-button" value="{{ tag.id }}" id=""><span class="glyphicon glyphicon-tag"></span> {{ tag.tag_name }}</button>
+															</div>
+															{% endfor %}
+															<div class="col-md-2">
+																<button type="button" class="btn btn-primary add-tag-button schem-item-button" value="{{ image.id }}" id="add-tags-button" data-toggle="modal" data-target="#addTagsModal"><span class="glyphicon glyphicon-plus"></span> Add Tag</button>
 																<!-- Modal -->
 																<div id="addTagsModal" class="modal fade" role="dialog">
 																	<div class="modal-dialog">
 																		<!-- Modal content-->
 																		<div class="modal-content">
-																			<form method="post" action="/edit_schematic/" enctype="multipart/form-data">
+																			<form method="post" action="/add_schematic_tag/" enctype="multipart/form-data">
 																				{% csrf_token %}
 																				<div class="modal-header">
 																					<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -226,7 +232,7 @@
 	  $(".schem-item-button").click(function() { // saves clicked schem-item-button id (which was initally assigned with corresponding image.id)
 	    schemID = $(this).attr('value');
 	  });
-	  $('#editSchematicModal').on('show.bs.modal', function(e) { // sends schemID to edit modal form hidden schemID input
+	  $('#editSchematicModal, #addTagsModal').on('show.bs.modal', function(e) { // sends schemID to modal form hidden schemID input
 	    $(e.currentTarget).find('input[name="schemID"]').val(schemID);
 	  });
 	  $('#viewSchematicModal').on('show.bs.modal', function(e) { // uses schemID to send schem image url to img element in view modal

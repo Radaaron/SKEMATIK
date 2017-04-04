@@ -209,7 +209,7 @@ label{
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    padding-top: 50px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -228,7 +228,6 @@ label{
     margin: auto;
     display: block;
     width: 80%;
-    max-width: 700px;
 }
 
 /* Caption of Modal Image (Image Text) - Same Width as the Image */
@@ -307,12 +306,27 @@ label{
     border-radius: 5px;
 }
 
-#modalSchematicImage{
-    width:100%;
+.modal-fullscreen {
+    width: 1700px !important;
+    height: 800px !important;
 }
 
-#modal-viewimage{
+#modalSchematicImage{
+    width: 1690px !important;
+    height: 800px !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+#modal-viewimage-content{
     background-color:#191919;
+    width: 100% !important;
+    height: auto !important;
+}
+
+#modal-viewimage-footer{
+    background-color:#191919;
+    width: 100% !important;
 }
 
 #mainpage-title{

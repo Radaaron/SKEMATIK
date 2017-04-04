@@ -141,17 +141,17 @@
 																<button type="button" class="btn btn-primary view-button schem-item-button" value="{{ image.id }}" id="view-button" data-toggle="modal" data-target="#viewSchematicModal"><span class="glyphicon glyphicon-search"></span> View Schematic</button>
 																<!-- Modal -->
 																<div id="viewSchematicModal" class="modal fade" role="dialog">
-																	<div class="modal-dialog">
+																	<div class="modal-dialog modal-fullscreen">
 																		<!-- Modal content-->
-																		<div class="modal-content" id="modal-viewimage">
+																		<div class="modal-content" id="modal-viewimage-content">
 																			<div class="modal-body">
 																				<div class="form-horizontal row">
 																					<div class="col-lg-12">
-																						<img class="group list-group-image schematic-image" id="modalSchematicImage" alt=""/>
+																						<img class="group list-group-image schematic-image .img-responsive" id="modalSchematicImage" alt=""/>
 																					</div>
 																				</div>
 																			</div>
-																			<div class="modal-footer">
+																			<div class="modal-footer" id="modal-viewimage-footer">
 																				<button type="button" class="btn btn-danger close-button" data-dismiss="modal">Close</button>
 																			</div>
 																		</div>
@@ -236,19 +236,16 @@
 	    $(e.currentTarget).find('input[name="schemID"]').val(schemID);
 	  });
 	  $('#viewSchematicModal').on('show.bs.modal', function(e) { // uses schemID to send schem image url to img element in view modal
-	    var url, temp, src = "{% static 'schematicsapp/images/default-image.jpg' %}";
+	    var temp, src = "{% static 'schematicsapp/images/default-image.jpg' %}";
 	    {% for image in images %}
 	      temp = {{ image.id }};
 	      if(temp == schemID){
-	        // url = {{ image.schematic_image.url }}; // THIS DOESNT WORK YET LOL
-	        // src = url + "";
+	        src = "{{ image.schematic_image.url }}"; // to string
 	      }
 	    {% endfor %}
 	    $("#modalSchematicImage").attr("src", src);
 	  });
 	});
-	// form validation
-	
 </script>
 {% endblock javascript %}
 {% endblock %}

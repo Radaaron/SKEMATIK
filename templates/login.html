@@ -4,10 +4,11 @@
 {% block css%}
 <link rel="stylesheet" type="text/css" href="{% static 'schematicsapp/css/login_style.css' %}" />
 {%endblock css %}
+{% block content %}
 {% block javascript %}
 <script>
-	$('.carousel').carousel();
-	$('form').submit(function(e){
+	jQuery('.carousel').carousel();
+	jQuery('form').submit(function(e){
 	     e.preventDefault();
 	     var form = $(e.target);
 	     $.ajax({
@@ -18,11 +19,15 @@
 	         success: function(){}
 	     })
 	})
-  // form validation
-  
+	// form validation
+	jQuery("#loginForm").validate({
+	  rules: {
+	    username: "required",
+	    password: "required"
+	  }
+	});
 </script>
 {% endblock javascript %}
-{% block content %}
 <div class="container-fluid">
 	<div class="row" style="margin-left:-15px;margin-right:-15px;">
 		<div class="carousel slide carousel-fade" data-ride="carousel">
@@ -91,7 +96,7 @@
 						<h2 class="well-header">Log-in</h2>
 						<div class="row login-row">
 							<div class="col-lg-12">
-								<form method="POST" action=".?next={{ log_redirect_to }}">
+								<form method="POST" action=".?next={{ log_redirect_to }}" id"loginForm">
 									{% csrf_token %}
 									<div class="row username-field">
 										<div class="col-lg-12">
@@ -113,24 +118,11 @@
 											</div>
 										</div>
 									</div>
-									<div class="row checkbox-field">
-										<div class="col-lg-12">
-											<div class="checkbox" style="margin-top:0;">
-												<label class="login-labels"><input type="checkbox" value="">Stay signed in?</label>
-											</div>
-										</div>
-									</div>
 									<div class="row submit-field">
 										<div class="col-lg-12">
 											<div id="sbox">
 												<button  class="btn btn-success" id="login-button" type="submit" value="Login" name="logreg-button">Log-in</button>
 											</div>
-										</div>
-									</div>
-									<div class="row buffer-10"></div>
-									<div class="row register-link">
-										<div class="col-lg-12">
-											<a href="/register/">Forgot your Password?</a>
 										</div>
 									</div>
 								</form>
@@ -147,7 +139,7 @@
 						<h2 class="well-header">Register</h2>
 						<div class="row register-row">
 							<div class="col-lg-12">
-								<form method="POST" action="/register/">
+								<form method="POST" action="/register/" id"registerForm">
 									{% csrf_token %}
 									<div class="row username-field">
 										<div class="col-lg-12">

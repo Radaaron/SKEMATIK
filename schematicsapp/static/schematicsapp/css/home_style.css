@@ -86,6 +86,21 @@ margin-top:10px;
     background:#800080;
 }
 
+#tag-button{
+    background-color: #0b8d6f;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    font-family: Century Gothic;
+}
+
+#tag-button:hover{
+    background:#0dad88;
+}
+
 #view-button{
     background-color: #551a8b;
     border: none;
@@ -131,6 +146,20 @@ margin-top:10px;
     background:#800080;
 }
 
+#delete-button{
+    background-color: #cc0000;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-family: Century Gothic;
+}
+
+#delete-button:hover{
+    background:#ff0033;
+}
 
 .close-button{
     background-color: #551a8b;
@@ -144,7 +173,6 @@ margin-top:10px;
     background-color: #d9534f;
     border-color: #d43f3a;
 }
-
 
 .thumbnail
 {

@@ -95,17 +95,15 @@
 																<h4 class="group inner list-group-item-text description-text" >{{ image.schematic_description }}</h4>
 															</div>
 														</div>
-														<div class="row top-buffer-20"></div>
+														<div class="row top-buffer-10"></div>
 														<div class="row schematic-tags">
-															<!-- Iteration for tags -->
-															{% for tag in image.schematic_tags.all %}
-															<div class="col-md-2">
-																<button type="button" class="btn btn-primary tag-button" value="{{ tag.id }}" id=""><span class="glyphicon glyphicon-tag"></span> {{ tag.tag_name }}</button>
-															</div>
-															{% endfor %}
-															<div class="col-md-2">
-																<button type="button" class="btn btn-primary add-tag-button schem-item-button" value="{{ image.id }}" id="add-tags-button" data-toggle="modal" data-target="#addTagsModal"><span class="glyphicon glyphicon-plus"></span> Add Tag</button>
-																<!-- Modal -->
+															<div class="col-lg-12">
+																<!-- Iteration for tags -->
+																{% for tag in image.schematic_tags.all %}
+																<button type="button" class="btn btn-primary tag-button" value="{{ tag.id }}" id="tag-button"><span class="glyphicon glyphicon-tag"></span> {{ tag.tag_name }}</button>
+																{% endfor %}
+																<button type="button" class="btn btn-primary add-tag-button schem-item-button" value="{{ image.id }}" id="tag-button" data-toggle="modal" data-target="#addTagsModal"><span class="glyphicon glyphicon-plus"></span> Add Tag</button>
+																<!-- Add Tag Modal -->
 																<div id="addTagsModal" class="modal fade" role="dialog">
 																	<div class="modal-dialog">
 																		<!-- Modal content-->
@@ -139,7 +137,7 @@
 														<div class="row panel-button-row">
 															<div class="col-lg-12">
 																<button type="button" class="btn btn-primary view-button schem-item-button" value="{{ image.id }}" id="view-button" data-toggle="modal" data-target="#viewSchematicModal"><span class="glyphicon glyphicon-search"></span> View Schematic</button>
-																<!-- Modal -->
+																<!-- View Modal -->
 																<div id="viewSchematicModal" class="modal fade" role="dialog">
 																	<div class="modal-dialog modal-fullscreen">
 																		<!-- Modal content-->
@@ -158,7 +156,7 @@
 																	</div>
 																</div>
 																<button type="button" class="btn btn-primary edit-button schem-item-button" value="{{ image.id }}" id="edit-button" data-toggle="modal" data-target="#editSchematicModal"><span class="glyphicon glyphicon-edit"></span> Edit Schematic Details</button>
-																<!-- Modal -->
+																<!-- Edit Modal -->
 																<div id="editSchematicModal" class="modal fade" role="dialog">
 																	<div class="modal-dialog">
 																		<!-- Modal content-->
@@ -191,6 +189,31 @@
 																	</div>
 																</div>
 																<button type="button" class="btn btn-primary schem-item-button" id="download-button" value="{{ image.id }}"><span class="glyphicon glyphicon-download"></span> Download Schematic</button>
+																<button type="button" class="btn btn-delete schem-item-button" id="delete-button" value="{{ image.id }}" data-toggle="modal" data-target="#deleteSchematicModal"><span class="glyphicon glyphicon-trash"></span> Delete Schematic</button>
+																<!-- Delete Modal -->
+																<div id="deleteSchematicModal" class="modal fade" role="dialog">
+																	<div class="modal-dialog">
+																		<!-- Modal content-->
+																		<div class="modal-content">
+																			<form method="post" action="/delete_schematic/" enctype="multipart/form-data">
+																				{% csrf_token %}
+																				<div class="modal-header">
+																					<button type="button" class="close" data-dismiss="modal">&times;</button>
+																					<h4 class="modal-title">Delete Schematic?</h4>
+																				</div>
+																				<div class="modal-body">
+																					<div class="form-horizontal row">
+																						<div class="col-lg-12">
+																							<input type="hidden" name="schemID" class="form-control"> <!-- no need for it to be visible-->
+																							<button class="btn btn-primary" id="tag-submit" type="submit">Confirm</button>
+																							<button type="button" class="btn btn-danger close-button"data-dismiss="modal">Close</button>
+																						</div>
+																					</div>
+																				</div>
+																			</form>
+																		</div>
+																	</div>
+																</div>
 															</div>
 														</div>
 													</div>
@@ -232,7 +255,7 @@
 	  $(".schem-item-button").click(function() { // saves clicked schem-item-button id (which was initally assigned with corresponding image.id)
 	    schemID = $(this).attr('value');
 	  });
-	  $('#editSchematicModal, #addTagsModal').on('show.bs.modal', function(e) { // sends schemID to modal form hidden schemID input
+	  $('#editSchematicModal, #addTagsModal, #deleteSchematicModal').on('show.bs.modal', function(e) { // sends schemID to modal form hidden schemID input
 	    $(e.currentTarget).find('input[name="schemID"]').val(schemID);
 	  });
 	  $('#viewSchematicModal').on('show.bs.modal', function(e) { // uses schemID to send schem image url to img element in view modal

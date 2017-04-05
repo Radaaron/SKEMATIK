@@ -12,6 +12,9 @@ class EditSchematicForm(forms.Form):
     name = forms.CharField()
     description = forms.CharField()
 
+class DeleteSchematicForm(forms.Form):
+    schemID = forms.IntegerField()
+
 class AddTagForm(forms.Form):
     schemID = forms.IntegerField()
     name = forms.CharField()

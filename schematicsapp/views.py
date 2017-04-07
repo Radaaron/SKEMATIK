@@ -4,7 +4,7 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib.sessions.models import Session
 from django.contrib.auth.models import User
 from django.views.generic import ListView
-from .forms import UploadImageForm, EditSchematicForm, DeleteSchematicForm, AddTagForm
+from .forms import UploadImageForm, EditSchematicForm, DeleteSchematicForm, AddTagForm, DeleteTagForm
 from .models import SchematicModel, TagModel
 
 
@@ -70,6 +70,18 @@ def add_schematic_tag(request):
         tag.save()
         # add tag to schematic
         schem.schematic_tags.add(tag)
+        return HttpResponseRedirect('/home/')
+    print("Invalid Form")
+    # default
+    return render(request, 'home.html', {'user': request.user})
+
+def delete_schematic_tag(request):
+    form = DeleteTagForm(request.POST, request.FILES)
+    if form.is_valid():
+        # find tag and delete
+        tagID = form.cleaned_data.get("schemID")
+        tag = TagModel.objects.get(id=tagID)
+        tag.delete()
         return HttpResponseRedirect('/home/')
     print("Invalid Form")
     # default

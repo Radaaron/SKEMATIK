@@ -122,6 +122,10 @@ margin-top:10px;
    height:380px;
 }
 
+
+.login-errors{
+    color:red;
+}
 .carousel-fade .carousel-inner .item {
     opacity: 0;
     transition-property: opacity;

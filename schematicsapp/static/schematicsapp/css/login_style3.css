@@ -59,16 +59,6 @@ margin-top:10px;
     font-size: 20pt;
 }
 
- .login {
-        width:500px;
-        height:500px;
-        position: absolute;
-        left: 63%;
-        top: 4%;
-        bottom: 0;
-        padding: 20px 0;
-    }
-
 .well-header{
     margin-top:0px;
     font-family: Century Gothic;
@@ -76,26 +66,22 @@ margin-top:10px;
 }
 
 .login-content {
-    width: 500px;
-    height: 100%;
+    position: absolute;
+    left: 57%;
+    top: 6%;
+    width: 600px;
+    height: 290px;
     margin-top:100px;
     font-family: Century Gothic;
 }
 
- .register {
-        width:500px;
-        height:500px;
-        position: absolute;
-        left: 63%;
-        top: 37%;
-        bottom: 0;
-        padding: 20px 0;
-    }
 
 .register-content {
-    width: 500px;
-    height: 100%;
-    margin-top:100px;
+    position: absolute;
+    left: 57%;
+    top: 48%;
+    width: 600px;
+    height: 385px;
     font-family: Century Gothic;
 }
 
@@ -126,16 +112,21 @@ margin-top:10px;
 
 .well-login{
    background-color: rgba(245, 245, 245, 0.4);
-   opacity:0.8;
-   height:285px;
+   opacity:0.80;
+   height:240px;
 }
 
 .well-register{
    background-color: rgba(245, 245, 245, 0.4);
-   opacity:0.8;
-   height:330px;
+   opacity:0.80;
+   height:380px;
 }
 
+
+#login-errors{
+    color:orange;
+    font-size:15pt;
+}
 .carousel-fade .carousel-inner .item {
     opacity: 0;
     transition-property: opacity;
@@ -223,13 +214,4 @@ margin-top:10px;
   padding: 10px;
   text-shadow: 2px 2px #000;
   color: #FFF;
-}
-
-
-#login-errorsbox{
-    border:1px solid red;
-}
-
-#login-errors{
-    color:red;
 }

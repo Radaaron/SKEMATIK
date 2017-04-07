@@ -18,3 +18,6 @@ class DeleteSchematicForm(forms.Form):
 class AddTagForm(forms.Form):
     schemID = forms.IntegerField()
     name = forms.CharField()
+
+class DeleteTagForm(forms.Form):
+    schemID = forms.IntegerField()

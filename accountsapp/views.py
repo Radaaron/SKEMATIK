@@ -3,22 +3,24 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from schematicsapp.models import SchematicModel
+from schematicsapp.models import SchematicModel, TagModel
 from schematicsapp.views import upload_schematic
 from django.contrib.sessions.models import Session
 from django.conf import settings
 from schematicsapp.forms import UploadImageForm
 from schematicsapp.views import upload_schematic
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.contrib.auth.forms import AuthenticationForm
+from accountsapp.forms import AuthenticationForm
 from accountsapp.forms import RegisterForm
 
 
 def Login(request):
+    auth_form = AuthenticationForm(None, request.POST or None)
     if request.method == "POST":
-        auth_form = AuthenticationForm(None, request.POST or None)
         if auth_form.is_valid():
-            user = auth_form.get_user()
+            username = auth_form.cleaned_data.get('username')
+            password = auth_form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
             if user != None:
                 if user.is_active:
                     login(request, user, backend = None)
@@ -27,8 +29,7 @@ def Login(request):
                     return HttpResponse("Inactive user.")
             else:
                 return HttpResponse("User does not exist.")
-        print("INVALID FORM")
-    return render(request, "login.html")
+    return render(request, "login.html", {'form':auth_form})
 
 def Register(request):
     register_form = RegisterForm(data = request.POST or None)
@@ -48,8 +49,8 @@ def Register(request):
             print("INVALID FORM")
             return HttpResponseRedirect('/login/')
     else:
-        reg_form = UserCreationForm()
-    return render(request, "login.html", {'redirect_to': next})
+        register_form = RegisterForm()
+    return render(request, "login.html", {'redirect_to': next, 'reg_form':register_form})
 
 def Logout(request):
     logout(request)
@@ -62,6 +63,10 @@ def Home(request):
     session_data = session.get_decoded()
     uid = session_data.get('_auth_user_id')
     images = SchematicModel.objects.filter(user_id=uid)
+    search_query = request.GET.get('searchquery')
+    if search_query:
+        tag_queryset = TagModel.objects.filter(tag_name=search_query)
+        images = SchematicModel.objects.filter(user_id=uid).filter(schematic_tags__in=tag_queryset)
     paginator = Paginator(images, 6)
     upload_schematic(request)
     return render(request, "home.html", {'images': images})
